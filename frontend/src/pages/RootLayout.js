@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
 
-const RootLayout =() => {
+const RootLayout = () => {
     return (
         <>
             <MainNavigation/>
@@ -9,7 +9,7 @@ const RootLayout =() => {
                 <Outlet/>
             </main>
         </>
-    )
+    );
 }
 
 export default RootLayout;
