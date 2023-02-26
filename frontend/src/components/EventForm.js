@@ -1,6 +1,7 @@
 import {Form, json, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 
 import classes from './EventForm.module.css';
+import {getAuthToken} from "../util/auth";
 
 function EventForm({ method, event }) {
   const navigate = useNavigate();
@@ -73,12 +74,15 @@ export default EventForm;
 export async function action({request, params}) {
     const data = await request.formData();
     const method = request.method;
+    const token = getAuthToken();
     const eventData = {
         title: data.get('title'),
         date: data.get('date'),
         description: data.get('description'),
         image: data.get('image'),
     }
+
+    console.log(token);
 
     let url = 'http://localhost:8080/events';
     if (method === "PATCH") {
@@ -90,7 +94,8 @@ export async function action({request, params}) {
         method: method,
         body: JSON.stringify(eventData),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
         }
     });
 
