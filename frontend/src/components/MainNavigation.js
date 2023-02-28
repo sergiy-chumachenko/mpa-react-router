@@ -49,7 +49,7 @@ function MainNavigation() {
           {token &&
             <li>
               <Form method='post' action='/logout'>
-                <button >Logout</button>
+                <input type="submit" value="Logout" />
               </Form>
             </li>
           }
